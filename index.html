@@ -2,9 +2,16 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>기기 선택</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기기 선택 페이지</title>
   <style>
-    /* 이미지 스타일 */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* 이미지 전체 화면 중앙 정렬 */
     #launch-image {
       display: flex;
       justify-content: center;
@@ -19,7 +26,7 @@
       height: auto;
     }
 
-    /* 팝업 배경 */
+    /* 팝업 스타일 */
     #popup {
       position: fixed;
       top: 0; left: 0;
@@ -31,7 +38,6 @@
       z-index: 9999;
     }
 
-    /* 팝업 창 */
     #popup-content {
       background: white;
       padding: 30px;
@@ -40,7 +46,6 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    /* 버튼 */
     .popup-button {
       margin: 10px;
       padding: 12px 24px;
@@ -50,15 +55,22 @@
       cursor: pointer;
     }
 
-    .android { background-color: #4CAF50; color: white; }
-    .iphone { background-color: #007AFF; color: white; }
+    .android {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .iphone {
+      background-color: #007AFF;
+      color: white;
+    }
   </style>
 </head>
 <body>
 
-<!-- 이미지가 먼저 보임 -->
+<!-- 시작 이미지 영역 -->
 <div id="launch-image" onclick="showPopup()">
-  <img src="APPImage.jpg" alt="시작 이미지">
+  <img src="./APPImage.jpg" alt="앱 시작 버튼">
 </div>
 
 <!-- 팝업 영역 -->
@@ -73,14 +85,13 @@
 <script>
   function goToURL(device) {
     if (device === 'android') {
-      window.location.href = "https://play.google.com/store/apps/details?id=com.elandeats.crm";
+      window.location.href = "https://play.google.com/store/apps/details?id=com.elandeats.crm"; // 안드로이드용 링크
     } else if (device === 'iphone') {
-      window.location.href = "https://apps.apple.com/kr/app/id6742396381";
+      window.location.href = "https://apps.apple.com/kr/app/id6742396381"; // 아이폰용 링크
     }
   }
 
   function showPopup() {
-    // 자동 감지
     const ua = navigator.userAgent.toLowerCase();
 
     if (ua.includes("android")) {
@@ -88,11 +99,11 @@
     } else if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod")) {
       goToURL('iphone');
     } else {
-      // 감지 실패 → 팝업 띄우기
+      // 감지 안되면 수동 선택 팝업 표시
       document.getElementById("popup").style.display = "flex";
       document.getElementById("launch-image").style.display = "none";
     }
-  } 
+  }
 </script>
 
 </body>
