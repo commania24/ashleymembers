@@ -4,10 +4,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>기기 선택 페이지</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* 이미지 전체 화면 중앙 정렬 */
+    #launch-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+    #launch-image img {
+      width: 100%;;
+      height: auto;
+    }
+
+    /* 팝업 스타일 */
+    #popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .popup-button {
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .android {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .iphone {
+      background-color: #007AFF;
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
-<img src="./APPImage.jpg" alt="앱 시작 버튼" width="100%">
+<!-- 시작 이미지 영역 -->
+<div id="launch-image" onclick="showPopup()">
+  <img src="./APPImage.jpg" alt="앱 시작 버튼">
+</div>
+
+<!-- 팝업 영역 -->
+<div id="popup">
+  <div id="popup-content">
+    <h2>기기를 선택하세요</h2>
+    <button class="popup-button android" onclick="goToURL('android')">안드로이드</button>
+    <button class="popup-button iphone" onclick="goToURL('iphone')">아이폰</button>
+  </div>
+</div>
+
+<script>
+  function goToURL(device) {
+    if (device === 'android') {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.elandeats.crm"; // 안드로이드용 링크
+    } else if (device === 'iphone') {
+      window.location.href = "https://apps.apple.com/kr/app/id6742396381"; // 아이폰용 링크
+    }
+  }
+
+  function showPopup() {
+    const ua = navigator.userAgent.toLowerCase();
+
+    if (ua.includes("android")) {
+      goToURL('android');
+    } else if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod")) {
+      goToURL('iphone');
+    } else {
+      // 감지 안되면 수동 선택 팝업 표시
+      document.getElementById("popup").style.display = "flex";
+      document.getElementById("launch-image").style.display = "none";
+    }
+  }
+</script>
 
 </body>
 </html>
