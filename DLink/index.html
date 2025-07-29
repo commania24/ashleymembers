@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>앱으로 이동 중...</title>
+  <script>
+    window.onload = function() {
+      const ua = navigator.userAgent.toLowerCase();
+
+      if (ua.includes("android")) {
+        // ✅ 안드로이드용 딥링크 또는 마켓 링크
+        window.location.href = "https://play.google.com/store/apps/details?id=com.elandeats.crm";
+        // 또는 앱 설치 링크: "https://play.google.com/store/apps/details?id=com.yourcompany.app"
+      }
+      else if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod")) {
+        // ✅ 아이폰용 앱스토어 링크
+        window.location.href = "https://apps.apple.com/kr/app/id6742396381";
+      }
+      else {
+        // ✅ 기타 기기 (PC 등)용 웹페이지
+        window.location.href = "https://app.elandeats.co.kr/";
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>앱으로 이동 중입니다... 이동되지 않으면 <a href="https://app.elandeats.co.kr/">여기를 클릭하세요</a>.</p>
+</body>
+</html>
