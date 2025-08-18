@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>애슐리 멤버스</title>
+  <script>
+    window.onload = function() {
+      const ua = navigator.userAgent.toLowerCase();
+      if (ua.includes("android")) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.elandeats.crm";
+      } else if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod")) {
+        window.location.href = "https://apps.apple.com/kr/app/id6742396381";
+      } else {
+        window.location.href = "https://app.elandeats.co.kr/";
+      }
+    };
+  </script>
+</head>
+<body></body>
+</html>
